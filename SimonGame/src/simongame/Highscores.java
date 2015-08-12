@@ -24,6 +24,9 @@ public class Highscores {
         highscores.add(player);
     }
     
+    public void saveHighscores(){}
+    public void loadHighscores(){}
+    
     
     public void displayHighscores() {
         if (!highscores.isEmpty()) {
@@ -34,5 +37,4 @@ public class Highscores {
             System.out.println("There are no highscores!");
         }
     }
-
 }
