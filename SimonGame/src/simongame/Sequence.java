@@ -58,6 +58,7 @@ public class Sequence {
         System.out.println("Round 3");
         sequence.generateSequence();
         System.out.println(sequence.getSequenceList());
+        
     }
     
 }
