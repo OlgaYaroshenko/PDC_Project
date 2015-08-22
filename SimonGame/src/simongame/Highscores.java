@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  * @author olga
  */
+
 public class Highscores {
     
     private Player player;
