@@ -57,7 +57,7 @@ public class Sequence {
     }
     
     //FOR TESTING PURPOSES ONLY-------------------------------------------------
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Sequence sequence = new Sequence();
         
         //Playing round 1
@@ -76,6 +76,8 @@ public class Sequence {
         System.out.println("Round 3");
         sequence.generateSequence();
         System.out.println(sequence.getSequenceList());
+        
+        Print.round(1, sequence.getSequenceList());
         
         
         

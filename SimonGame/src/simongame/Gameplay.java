@@ -12,5 +12,7 @@ import javax.swing.JFrame;
  * @author olga
  */
 public class Gameplay extends JFrame {
+    Sequence sequence = new Sequence();
+    
     
 }

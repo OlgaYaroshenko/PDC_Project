@@ -1,5 +1,7 @@
 package simongame;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author olga
@@ -33,13 +35,14 @@ public class Print {
         System.out.println("In order to obtain the highest score you will need to repeat correctly a longer and longer sequence of numbers from 1 to 4.");
     }
 
-    public static void round(int round, Sequence sequence) {
+    public static void round(int round, LinkedList<String> numberList) throws InterruptedException {
         System.out.println("Round " + round + ":");
-//        for (int i = 0; i < sequence.length(); i++) {
-//           System.out.print(i);
-//           thread.sleep(1000);
-//           System.out.print("\b");
-//        }
+        for (int i = 0; i < numberList.size(); i++) {
+           System.out.print("Round " + i);
+            System.out.println(numberList.get(i));
+           Thread.sleep(1000);
+           System.out.print("\b");
+        }
         
     }
 
