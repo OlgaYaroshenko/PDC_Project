@@ -55,9 +55,22 @@ public class Sequence {
         
         return true;
     }
+
+    @Override
+    public String toString() {
+        String list = "";
+        for(int i = 0; i<getSequenceList().size(); i++) {
+            list += getSequenceList().get(i);
+        }
+        return list;
+    }
+    
+    
     
     //FOR TESTING PURPOSES ONLY-------------------------------------------------
     public static void main(String[] args) throws InterruptedException {
+        
+        /*
         Sequence sequence = new Sequence();
         
         //Playing round 1
@@ -80,7 +93,7 @@ public class Sequence {
         Print.round(1, sequence.getSequenceList());
         
         
-        
+        */
         
     }
     

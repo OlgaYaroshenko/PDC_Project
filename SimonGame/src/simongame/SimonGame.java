@@ -16,27 +16,38 @@ public class SimonGame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Gameplay gameplay = new Gameplay();
         Scanner scan = new Scanner(System.in);
         String userOption = "";
         
         while(!userOption.equals("4")) {
             Print.welcomeMessage();
-            userOption = scan.next();    
-            switch (userOption) {
-                case "1":
-                    //gameplay.playSimon();
-                    break;
-                case "2":
+            Print.image();
+            Print.gameOptions();
+            userOption = scan.next();
+            while(userOption != "4") {
+                
+                if(userOption.endsWith("1")) {
+                    gameplay.play();
+                    Print.gameOptions();
+                    userOption = scan.next();
+                }
+                else if(userOption.equals("2")) {
                     Print.instructions();
-                    break;
-                case "3":
-                    break;
-                case "0":
-                    //Print goodbye message
-                    userOption = "4";
-                    break;
+                    Print.gameOptions();
+                    userOption = scan.next();
+                }
+                else if(userOption.equals("3")) {
+                    Print.highscores();
+                    Print.gameOptions();
+                    userOption = scan.next();
+                }
+                else if(userOption.equals("4")) {
+                    //Print.goodbye();
+                    System.exit(1);
+
+                }
             }        
         }
         

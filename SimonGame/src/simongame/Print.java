@@ -35,13 +35,13 @@ public class Print {
         System.out.println("In order to obtain the highest score you will need to repeat correctly a longer and longer sequence of numbers from 1 to 4.");
     }
 
-    public static void round(int round, LinkedList<String> numberList) throws InterruptedException {
-        System.out.println("Round " + round + ":");
-        for (int i = 0; i < numberList.size(); i++) {
-           System.out.print("Round " + i);
-            System.out.println(numberList.get(i));
-           Thread.sleep(1000);
+    public static void round(int round, Sequence sequence) throws InterruptedException {
+       for (int i = 0; i < sequence.getSequenceList().size(); i++) {
+           System.out.println("Round " + round);
+           System.out.print(sequence.toString());
+           Thread.sleep(2000);
            System.out.print("\b");
+           break;
         }
         
     }

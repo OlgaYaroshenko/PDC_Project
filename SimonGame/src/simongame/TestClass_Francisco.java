@@ -5,22 +5,23 @@
  */
 package simongame;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Francisco
  */
 public class TestClass_Francisco {
     public static void main(String[] args) {
-        Highscores h = new Highscores();
-        
-        Highscores.saveHighScore(new Player("John", 100));
-        
-        
-        
-        
-        
-        for(String s : Highscores.getHighScoreList())
-            System.out.println(s);
+        System.out.println("**********************************************************************************");
+        System.out.print("*           ");
+        Print.welcomeMessage();
+        System.out.print("                                   *");
+        Print.image();
+        Print.gameOptions();
+        Print.userPrompt();
+        System.out.println("**********************************************************************************");
     }
     
     
