@@ -26,7 +26,7 @@ public class Print {
     }
 
     public static void gameOptions() {
-        System.out.println("Press [1] to start the game, [2] for instructions, [3] for highscores: ");
+        System.out.println("Press [1] to start the game, [2] for instructions, [3] for highscores, [4] to exit: ");
     }
 
     public static void instructions() {
@@ -61,6 +61,11 @@ public class Print {
     
     public static void congratulations() {
         System.out.println("Congratulations! You have achieved highscores! Please enter your name: ");
+    }
+    
+    public static void highscores() {
+        for (String s : Highscores.getHighScoreList())
+            System.out.println(s);
     }
 
     /*
