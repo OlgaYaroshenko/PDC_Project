@@ -42,6 +42,20 @@ public class Sequence {
         return sequenceList;
     }
     
+    /**
+     * 
+     * @param userInput is the sequence the user types. THIS SEQUENCE MUST BE WITHOUT SPACING. e.g. 124
+     * 
+     * @return true if user sequence matches computer sequence
+     */
+    public boolean isSequenceCorrect(String userInput) {
+        for(int i = 0; i<this.getSequenceList().size(); i++) 
+            if(!(userInput.charAt(i) == this.getSequenceList().get(i).charAt(this.getSequenceList().get(i).length()-1)))
+                return false;
+        
+        return true;
+    }
+    
     //FOR TESTING PURPOSES ONLY-------------------------------------------------
     public static void main(String[] args) {
         Sequence sequence = new Sequence();
@@ -50,14 +64,21 @@ public class Sequence {
         System.out.println("Round 1");
         sequence.generateSequence();
         System.out.println(sequence.getSequenceList());
+        System.out.println("User entered 1, checking if user is correct:");
+        System.out.println(sequence.isSequenceCorrect("1"));
         
         System.out.println("Round 2");
         sequence.generateSequence();
         System.out.println(sequence.getSequenceList());
+        System.out.println("User entered 1,2, checking if user is correct:");
+        System.out.println(sequence.isSequenceCorrect("12"));
         
         System.out.println("Round 3");
         sequence.generateSequence();
         System.out.println(sequence.getSequenceList());
+        
+        
+        
         
     }
     
