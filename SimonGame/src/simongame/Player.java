@@ -27,7 +27,7 @@ public class Player implements Comparable<Player> {
         if (i < 0) {
             throw new IllegalArgumentException("Score must be 0 or greater!");
         }
-        score += i;
+        score = i;
     }
 
     public void setName(String name) {
