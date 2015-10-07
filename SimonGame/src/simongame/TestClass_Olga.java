@@ -11,9 +11,18 @@ package simongame;
  */
 public class TestClass_Olga {
     public static void main(String[] args) {
-        Highscores.saveHighScore(new Player("aa", 100));
-        
-       for (String s : Highscores.getHighScoreList())
-            System.out.println(s);
+    /*
+    In order to try how it works copypaste the following calls to main method:*/
+        Print.welcomeMessage();
+        Print.image();
+        Print.gameOptions();
+        Print.instructions();
+        Print.round(1, null);
+        Print.userPrompt();
+        Print.correctAnswer(null);
+        Print.incorrectAnswer(null);
+        Print.gameOver();
+        Print.congratulations();
+    
     }
 }
