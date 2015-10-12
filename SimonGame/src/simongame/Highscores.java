@@ -178,7 +178,7 @@ public class Highscores {
             try {
                 fw = new FileWriter(file);
             } catch (IOException ex) {
-                Logger.getLogger(SimonGame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             try (BufferedWriter bw = new BufferedWriter(fw)) {
                 bw.write(h.toString());
