@@ -6,8 +6,6 @@ Rob
 3
 Fred
 2
-ib
-2
 colin
 1
 Francisco

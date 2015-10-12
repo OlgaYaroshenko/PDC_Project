@@ -90,7 +90,7 @@ public class Print {
         System.out.println("*************************************************************");
         System.out.println("*                      High Scores:                         *");
         System.out.println("*************************************************************");
-        for (String s : Highscores.getHighScoreList())
+        for (String s : Highscores.getHighScoreArray(50))
             System.out.println(s);
     }
 

@@ -15,86 +15,27 @@ public class Sequence {
         this.colorSequence = new LinkedList<>();
     }
     
+    //GETTERS-------------------------------------------------------------------
+    public LinkedList<Color> getColorSequence() {
+        return colorSequence;
+    }
+    
     //METHODS-------------------------------------------------------------------
     public void generateSequence() {
         int colorOrdinal = random.nextInt(4);
         this.colorSequence.addLast(Color.values()[colorOrdinal]);
     }
     
-    public LinkedList<String> getSequenceList(){
-        LinkedList<String> sequenceList = new LinkedList<>();
-        for(Color color : this.colorSequence) {
-            switch (color) {
-                case GREEN:
-                    sequenceList.addLast("\033[32m" + color.getColorCode());
-                    break;
-                case RED:
-                    sequenceList.addLast("\033[31m" + color.getColorCode());
-                    break;
-                case BLUE:
-                    sequenceList.addLast("\033[34m" + color.getColorCode());
-                    break;
-                case YELLOW:
-                    sequenceList.addLast("\033[33m" + color.getColorCode());
-                    break;
-            }
-        }
-        return sequenceList;
-    }
-    
-    /**
-     * 
-     * @param userInput is the sequence the user types. THIS SEQUENCE MUST BE WITHOUT SPACING. e.g. 124
-     * 
-     * @return true if user sequence matches computer sequence
-     */
-    public boolean isSequenceCorrect(String userInput) {
-        for(int i = 0; i<this.getSequenceList().size(); i++) 
-            if(!(userInput.charAt(i) == this.getSequenceList().get(i).charAt(this.getSequenceList().get(i).length()-1)))
+    public boolean isSequenceCorrect(LinkedList<Color> userSequence) {
+        for(int i = 0; i < userSequence.size(); i++) {
+            if(!(userSequence.get(i) == colorSequence.get(i)))
                 return false;
-        
+        }       
         return true;
     }
 
     @Override
     public String toString() {
-        String list = "";
-        for(int i = 0; i<getSequenceList().size(); i++) {
-            list += getSequenceList().get(i);
-        }
-        return list;
+        return colorSequence.toString();
     }
-    
-    
-    
-    //FOR TESTING PURPOSES ONLY-------------------------------------------------
-    public static void main(String[] args) throws InterruptedException {
-        
-        /*
-        Sequence sequence = new Sequence();
-        
-        //Playing round 1
-        System.out.println("Round 1");
-        sequence.generateSequence();
-        System.out.println(sequence.getSequenceList());
-        System.out.println("User entered 1, checking if user is correct:");
-        System.out.println(sequence.isSequenceCorrect("1"));
-        
-        System.out.println("Round 2");
-        sequence.generateSequence();
-        System.out.println(sequence.getSequenceList());
-        System.out.println("User entered 1,2, checking if user is correct:");
-        System.out.println(sequence.isSequenceCorrect("12"));
-        
-        System.out.println("Round 3");
-        sequence.generateSequence();
-        System.out.println(sequence.getSequenceList());
-        
-        Print.round(1, sequence.getSequenceList());
-        
-        
-        */
-        
-    }
-    
 }
