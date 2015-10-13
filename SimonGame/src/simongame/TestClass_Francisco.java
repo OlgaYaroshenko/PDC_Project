@@ -5,8 +5,7 @@
  */
 package simongame;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Random;
 
 /**
  *
@@ -14,14 +13,10 @@ import java.util.logging.Logger;
  */
 public class TestClass_Francisco {
     public static void main(String[] args) {
-        System.out.println("**********************************************************************************");
-        System.out.print("*           ");
-        Print.welcomeMessage();
-        System.out.print("                                   *");
-        Print.image();
-        Print.gameOptions();
-        Print.userPrompt();
-        System.out.println("**********************************************************************************");
+        Random r = new Random();
+        int colorOrdinal = r.nextInt(4);
+        System.out.println(Color.values()[colorOrdinal]);
+        
     }
     
     

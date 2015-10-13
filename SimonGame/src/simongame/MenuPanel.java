@@ -47,7 +47,7 @@ public class MenuPanel extends JPanel {
         setLayout(CARDLAYOUT);
         add(GAME_PANEL, "Game");
         add(loadMenuOptionsPanel(), "Menu");
-        add(loadHighScoresPanel(), "HighScores");
+        add(loadHighScoresPanel(null), "HighScores"); //TODO revise null
         add(loadInstructionsPanel(), "Instructions");
         CARDLAYOUT.show(this, "Menu");
         GAME_CONTROLLER = new Controller(this, GAME_PANEL);
@@ -124,7 +124,8 @@ public class MenuPanel extends JPanel {
         return INSTRUCTIONS_PANEL;
     }
     
-    private JPanel loadHighScoresPanel() {
+    protected JPanel loadHighScoresPanel(String[] highScores) {
+        //TODO create label and pass highScores string to it. Load label in HS panel
         HIGHSCORES_PANEL.setBackground(Color.WHITE);
         HIGHSCORES_PANEL.add(HIGH_SCORES_HOME_BUTTON);
         return HIGHSCORES_PANEL;

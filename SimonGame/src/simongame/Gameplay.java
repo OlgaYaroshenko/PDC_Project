@@ -1,7 +1,6 @@
 
 package simongame;
 
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,22 +12,23 @@ public class Gameplay implements Runnable {
 
     //FIELDS--------------------------------------------------------------------
     private Sequence SEQUENCE;
-    private LinkedList<Color> userSequence;
     private final GamePanel GAME_GUI;
     private boolean isSequenceRunning;
     private boolean isGameStarted;
+    private boolean isGameOver;
     private int round;
-    private int best;
+    private int best; //TODO we need to get the best score from database
+    private int userColorClicks;
     
     //CONSTRUCTOR---------------------------------------------------------------
     public Gameplay(GamePanel gameGUI) {
         this.GAME_GUI = gameGUI;
         this.SEQUENCE = new Sequence();
-        this.userSequence = new LinkedList<>();
         this.isSequenceRunning = false;
         this.isGameStarted = false;
+        this.isGameOver = false;
         this.round = 1;
-        //TODO this.best = get best score from database
+        this.userColorClicks = 1;
     }
     
     //GETTERS-------------------------------------------------------------------
@@ -52,39 +52,50 @@ public class Gameplay implements Runnable {
         return best;
     }
 
+    public int getUserColorClicks() {
+        return userColorClicks;
+    }
+
     //SETTERS-------------------------------------------------------------------
     public void setIsGameStarted(boolean isGameStarted) {
         this.isGameStarted = isGameStarted;
+    }
+
+    public void setIsGameOver(boolean isGameOver) {
+        this.isGameOver = isGameOver;
     }
 
     public void setIsSequenceRunning(boolean isSequenceRunning) {
         this.isSequenceRunning = isSequenceRunning;
     }
 
+    public void setUserColorClicks(int userColorClicks) {
+        this.userColorClicks = userColorClicks;
+    }
+
     //METHODS-------------------------------------------------------------------
     public void reset() {
         this.SEQUENCE = new Sequence();
-        this.userSequence = new LinkedList<>();
         this.isSequenceRunning = false;
         this.isGameStarted = false;
+        this.isGameOver = false;
         this.round = 1;
+        this.userColorClicks = 1;
         GAME_GUI.getROUND_TALLY().setText("Round : " + round);
     }
-
-    public boolean isUserAnswerCorrect() {
-        boolean isCorrect = SEQUENCE.isSequenceCorrect(userSequence);
-        userSequence = new LinkedList<>();
-        if (isCorrect) {
-            round++;
-            GAME_GUI.getROUND_TALLY().setText("Round : " + round);
-        }
-
-        return isCorrect;
+    
+    public boolean isEntryCorrect(Color color) {
+        return SEQUENCE.getColorSequence().get(userColorClicks - 1) == color;
     }
 
-    public boolean isAttemptComplete(Color color) {
-        userSequence.addLast(color);
-        return userSequence.size() == SEQUENCE.getColorSequence().size();
+    public boolean isRoundAttemptComplete() {
+        if(SEQUENCE.getColorSequence().size() == userColorClicks) {
+            userColorClicks = 1;
+            GAME_GUI.getROUND_TALLY().setText("Round : " + (++round));
+            return true;
+        }
+        userColorClicks++;
+        return false;
     }
 
     public void flash(Color color) throws InterruptedException {
@@ -126,19 +137,27 @@ public class Gameplay implements Runnable {
 
     public void flashColorSequence() throws InterruptedException {
         isSequenceRunning = true;
-        if (round != 1) {
+        if (round != 1) 
             Thread.sleep(1000);
-        }
-        for (Color color : SEQUENCE.getColorSequence()) {
+        
+        for (Color color : SEQUENCE.getColorSequence())
             flash(color);
-        }
+        
         isSequenceRunning = false;
     }
 
     @Override
     public void run() {
         try {
-            flashColorSequence();
+            int numberOfFlashes = 0;
+            if(isGameOver) {
+                while(numberOfFlashes < 3) {
+                    flash(SEQUENCE.getColorSequence().get(userColorClicks-1));
+                    numberOfFlashes++;
+                }
+                reset();
+            } else
+                flashColorSequence();
         } catch (InterruptedException ex) {
             Logger.getLogger(Gameplay.class.getName()).log(Level.SEVERE, null, ex);
         }
