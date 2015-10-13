@@ -29,14 +29,15 @@ public class Controller implements ActionListener, MouseListener {
             flashSequenceThread.start();
         } else {
             Audio.playSound("GameOver.wav");
-            if(GAME_PLAY.getRound() > GAME_PLAY.getBest()) {
+            if(GAME_PLAY.getRound() > Highscores.getHighestScore()) {
                 String highScoreMessage = "HIGH SCORE | ENTER YOUR NAME GO DOWN IN THE HISTORY BOOKS";
                 String playerName = JOptionPane.showInputDialog(GAME_PANEL, highScoreMessage, "Simon Game", 
                                     JOptionPane.INFORMATION_MESSAGE);
                 if(playerName == null)
                     playerName = "No Name";
                 Player player = new Player(playerName, GAME_PLAY.getRound());
-                //TODO add code relating to highScores here
+                Highscores.addHighscore(player);
+                //TODO Done! add code relating to highScores here
                 /*
                  if(GAME_PLAY.getRounds > highScore.bestScore) {
                  **Window will pop up and player to enter name

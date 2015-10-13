@@ -50,10 +50,8 @@ public class DBconnection {
         ArrayList<Player> array = new ArrayList<>();
         statement = conn.createStatement();
         rs = statement.executeQuery("SELECT * FROM " + tableName);
-      
         while(rs.next()){
-            array.add(new Player(rs.getString(1), rs.getInt(2)));
-            
+            array.add(new Player(rs.getString(1), rs.getInt(2))); 
         }
         sort(array);
         Highscores h = Highscores.makeEmpty();
@@ -80,8 +78,7 @@ public class DBconnection {
     private boolean checkTableExisting(String newTableName) {
         boolean flag=false;
         try {
-            
-            System.out.println("check existing tables.... ");
+            System.out.println("Checking existing tables.... ");
             String[] types={"TABLE"};
             DatabaseMetaData dbmd=conn.getMetaData();
             ResultSet rsDBMeta=dbmd.getTables(null, null, null, null);
@@ -102,16 +99,6 @@ public class DBconnection {
         return flag; 
     }
     
-    
-    public static void main(String arg[]) throws SQLException{
-        
-        DBconnection db = new DBconnection();
-        db.autoConnectDB();
-        //db.updateDB("Frank", 133);
-        //db.updateDB("Saif", 123);
-        db.getHighscoresFromDB();
-
-    }
     
     public class PlayerComparator implements Comparator<Player> {
 

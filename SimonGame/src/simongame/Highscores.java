@@ -25,14 +25,14 @@ public class Highscores {
         return h;
     }
     
+    // Creates Highscores object from database
     public static Highscores fromDB(DBconnection db) throws SQLException{
         Highscores h = db.getHighscoresFromDB();
         return h;  
     }
    
     /**
-     *
-     * @param p is a player object
+     * Adds Player to TreeSet
      */
     public static void addHighscore(Player p) {
         scoreboard.add(p);
@@ -72,14 +72,18 @@ public class Highscores {
     /**
      * @return an int representing the lowest of all top 10 scores
      */
-    public int getLowestScore() {
+    public static int getLowestScore() {
         return scoreboard.last().score();
     }
     
-    public int getHighestScore(){
+    /**
+     * @return an int representing the highest of all top 10 scores
+     */
+    public static int getHighestScore(){
         return scoreboard.first().score();
     }
     
+    // Adds Player to TreeSet and database
     public static void saveHighScore(DBconnection db, Player player) {
         addHighscore(player);
         db.updateDB(player);
@@ -115,7 +119,7 @@ public class Highscores {
         } else {
             Highscores.printHighscores(h, 50);
         }
-        h.saveHighScore(db, new Player("Zulu", 1000));
+        h.saveHighScore(db, new Player("Rick", 2000));
         h = fromDB(db);
         Highscores.printHighscores(h, 50);
         System.out.println(h.getHighestScore());

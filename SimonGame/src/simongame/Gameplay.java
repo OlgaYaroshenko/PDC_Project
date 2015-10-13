@@ -18,7 +18,6 @@ public class Gameplay implements Runnable {
     private boolean isSequenceRunning;
     private boolean isGameStarted;
     private int round;
-    private int best;
     
     //CONSTRUCTOR---------------------------------------------------------------
     public Gameplay(GamePanel gameGUI) {
@@ -28,7 +27,6 @@ public class Gameplay implements Runnable {
         this.isSequenceRunning = false;
         this.isGameStarted = false;
         this.round = 1;
-        //TODO this.best = get best score from database
     }
     
     //GETTERS-------------------------------------------------------------------
@@ -47,11 +45,6 @@ public class Gameplay implements Runnable {
     public int getRound() {
         return round;
     }
-
-    public int getBest() {
-        return best;
-    }
-
     //SETTERS-------------------------------------------------------------------
     public void setIsGameStarted(boolean isGameStarted) {
         this.isGameStarted = isGameStarted;
