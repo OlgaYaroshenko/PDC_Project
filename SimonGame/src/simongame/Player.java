@@ -1,8 +1,9 @@
 package simongame;
 
 /**
- *
- * @author olga
+ * * @author Francisco Vilches 1115994 | Olga Yaroshenko 15870568
+ * 
+ * Contains a representation of a Player, consisting of a name and a score
  */
 public class Player implements Comparable<Player> {
     //FIELDS--------------------------------------------------------------------
@@ -14,6 +15,7 @@ public class Player implements Comparable<Player> {
         this.name = name;
         this.score = score;
     }
+    
     //GETTERS-------------------------------------------------------------------
     public String name() {
         return name;
@@ -22,6 +24,7 @@ public class Player implements Comparable<Player> {
     public int score() {
         return score;
     }
+    
     //SETTERS-------------------------------------------------------------------
     public void addToScore(int i) {
         if (i < 0) {
@@ -35,6 +38,12 @@ public class Player implements Comparable<Player> {
     }
     
     //METHODS-------------------------------------------------------------------
+    /**
+     * Converts a string into a player object
+     * 
+     * @param s a String consisting of a player name and score
+     * @return a Player object
+     */
     public static Player fromInput(String s) {
         if (s == null) {
             throw new IllegalArgumentException("s cannot be null");
@@ -44,7 +53,13 @@ public class Player implements Comparable<Player> {
         }
         return new Player(s, 0);
     }
-
+    
+    /**
+     * Converts a string into a player object
+     * 
+     * @param s a String consisting of a player name and score
+     * @return a Player object
+     */
     public static Player fromStringFile(String s) {
         if (s == null) {
             throw new IllegalArgumentException("s cannot be null");

@@ -1,73 +1,50 @@
-//Adding a comment :O
 package simongame;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
+ * @author Francisco Vilches 1115994 | Olga Yaroshenko 15870568
  *
- * @author olga
+ * This is the main class/access point which runs the entire program. Through
+ * the console it displays to the player all menu options.
  */
 public class SimonGame {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws InterruptedException {
-        Gameplay gameplay = new Gameplay();
         Scanner scan = new Scanner(System.in);
         String userOption = "";
-        
-        while(!userOption.equals("4")) {
-            Print.welcomeMessage();
-            Print.image();
-            Print.gameOptions();
-            userOption = scan.next();
-            while(userOption != "4") {
-                
-                if(userOption.endsWith("1")) {
-                    gameplay.play();
-                    Print.gameOptions();
-                    userOption = scan.next();
-                }
-                else if(userOption.equals("2")) {
-                    Print.instructions();
-                    Print.gameOptions();
-                    userOption = scan.next();
-                }
-                else if(userOption.equals("3")) {
-                    Print.highscores();
-                    Print.gameOptions();
-                    userOption = scan.next();
-                }
-                else if(userOption.equals("4")) {
-                    //Print.goodbye();
-                    System.exit(1);
 
-                }
-            }        
+        Print.welcomeMessage();
+        Print.image(); //Game Logo
+        Print.gameOptions();
+        userOption = scan.next();
+
+        while (userOption != "4") { //4 = exit
+            if (userOption.endsWith("1")) { //1 =start game
+                Gameplay gameplay = new Gameplay();
+                gameplay.play();
+                Print.gameOptions();
+                userOption = scan.next();
+
+            } else if (userOption.equals("2")) { //2 = instructions
+                Print.instructions();
+                Print.gameOptions();
+                userOption = scan.next();
+
+            } else if (userOption.equals("3")) { //3 = highScores
+                Print.highscores();
+                Print.gameOptions();
+                userOption = scan.next();
+
+            } else if (userOption.equals("4")) { //4 = exit
+                Print.goodbye();
+                Thread.sleep(750);
+                System.exit(1);
+
+            } else {
+                System.out.println("Wrong Input, try again");
+                Print.gameOptions();
+                userOption = scan.next();
+            }
         }
-        
-        
-        
-        
-        
-//        Player player = new Player();
-//        player.setNameFromUser();
-//        System.out.println(player.toString());
-//        try {
-//            Highscores.loadHighscores();
-//        } catch (IOException ex) {
-//            Logger.getLogger(SimonGame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Highscores.addHighscore(player);
-//        Highscores.displayHighscores();
-        
-        
-    
     }
-    
 }

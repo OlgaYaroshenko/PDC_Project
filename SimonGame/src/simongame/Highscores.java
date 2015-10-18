@@ -1,13 +1,5 @@
-//AUTHORS
-//Francisco Vilches - 1115994
-//Olga Yaroshenko - 15870568
-
 package simongame;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,18 +8,21 @@ import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 
+/**
+ * @author Francisco Vilches 1115994 | Olga Yaroshenko 15870568
+ * 
+ * Class used for storing a sorted collection of players and providing methods
+ * to modify and query this collection
+ * 
+ * Uses a default constructor
+ */
 public class Highscores {
     //FIELDS--------------------------------------------------------------------
     private static SortedSet<Player> scoreboard;
     
-    //CONSTRUCTOR---------------------------------------------------------------
-    public Highscores() {}
-    
     //METHODS-------------------------------------------------------------------
     /**
-     *
      * @return returns an empty scoreboard tree set
      */
     public static Highscores makeEmpty() {
@@ -135,9 +130,7 @@ public class Highscores {
                 text = scan.nextLine();
                 x++;
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
-        }
+        } catch (FileNotFoundException e) {}
         //returning 0 if there are no high scores available yet
         if(text.length()<1)
             return 0;
@@ -164,7 +157,6 @@ public class Highscores {
             h = h.fromString(text.trim());
 
         } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
         }
 
         if (h == null) {
@@ -184,11 +176,13 @@ public class Highscores {
                 bw.write(h.toString());
             }
         } catch (IOException ex) {
-            System.err.println("file not found");
         }
     }
     
-    
+    /**
+     * @return a string array representing an ordered list of player names along
+     * with their scores
+     */
     public static String[] getHighScoreList() {
         //Setting up high scores object and graphic settings
         Highscores h = new Highscores();
@@ -204,65 +198,11 @@ public class Highscores {
             h = Highscores.fromString(text.trim());
 
         } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
-        }
-
-        if (h == null) {
-            h = Highscores.makeEmpty();
+            System.err.println("No High Scores Exist Yet!");
+            return new String[] {""};
         }
         
         return h.getHighScoreArray(1);
-    }
-    
-    
-    /**
-     * This method paints the game highScores onto any panel
-     * The high scores are retrieved from the system's .txt file which contains the high scores
-     * 
-     * @param g graphics object which is in charge of painting a representation
-     * of the high scores within any panel
-     * @param panel is the panel on which the high scores are going to be painted
-     */
-    public static void paintHighScores(Graphics g, JPanel panel) {
-        //Setting up high scores object and graphic settings
-        Highscores h = new Highscores();
-        g.clearRect(0, 0, panel.getWidth(), panel.getHeight());
-        
-        //getting high scores .txt file
-        File file = new File("highscores.txt");
-        try {
-            Scanner scan = new Scanner(file);
-            String text = "";
-            while (scan.hasNextLine()) {
-                text += scan.nextLine() + "\n";
-            }
-            h = Highscores.fromString(text.trim());
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found!");
-        }
-
-        if (h == null) {
-            h = Highscores.makeEmpty();
-        }
-
-        //Configuring text graphics and drawing scores
-        g.setColor(Color.green);
-        Font font = new Font("Arial", 1, 40);
-        FontMetrics fontMetrics = g.getFontMetrics(font);
-        g.setFont(font);
-        int fontLength = 0;
-        fontLength = fontMetrics.stringWidth("HIGHSCORES");
-        g.drawString("HIGHSCORES", (panel.getWidth() / 2) - fontLength / 2, 70);
-        font = new Font("Arial", 1, 25);
-        g.setFont(font);
-        //Printing high scores using h.display, which gives a string array of each line of the high scores
-        int spacing = 10;
-        for (String s : h.getHighScoreArray(1)) {
-            fontLength = fontMetrics.stringWidth(s);
-            g.drawString(s, (panel.getWidth() / 2) - fontLength/3, 100 + spacing);
-            spacing += 35;
-        }
     }
 
     @Override

@@ -1,16 +1,17 @@
 package simongame;
 
-import java.util.LinkedList;
-
 /**
- *
- * @author olga
+ * @author Francisco Vilches 1115994 | Olga Yaroshenko 15870568
+ * 
+ * Class which contains methods which have a public static access. 
+ * The class methods are intended to display necessary instructions, options,
+ * and game play output to the console.
  */
 public class Print {
-
-    private Print() {
-    }
-
+    //CONSTRUCTOR---------------------------------------------------------------
+    private Print() {}
+    
+    //METHODS-------------------------------------------------------------------
     public static void welcomeMessage() {
         System.out.println("*************************************************************");
         System.out.println("*                WELCOME TO SIMON GAME!                     *");
@@ -43,16 +44,40 @@ public class Print {
                          + "* from 1 to 4.                                              *");
         System.out.println("*************************************************************");
     }
-
-    public static void round(int round, Sequence sequence) {
+    
+    /**
+     * Takes an integer representing the number of rounds played thus far, and
+     * a sequence object which is used in order for the method to flash a
+     * sequence of colored numbers to the console, which the player will have to
+     * input in the same order.
+     * 
+     * @param round an integer representing the round at which the game is at
+     * @param sequence a sequence object which contains a List of numbers in a
+     * randomly generated order.
+     */
+    public static void round(int round, SequenceGenerator sequence) { 
         System.out.println("*************************************************************");
         System.out.println("*                        Round " + round + ":                           *");
         System.out.println("*************************************************************");
-//        for (int i = 0; i < sequence.length(); i++) {
-//           System.out.print(i);
-//           thread.sleep(1000);
-//           System.out.print("\b");
-//        }
+        for (int i = 0; i < sequence.getSequenceList().size(); i++) {
+            try {
+                System.out.print("                            " + sequence.getSequenceList().get(i));
+                Thread.sleep(160); //milliseconds
+                if (sequence.getSequenceList().get(i).endsWith("1")) {
+                    Audio.playSound("Green.wav");
+                } else if (sequence.getSequenceList().get(i).endsWith("2")) {
+                    Audio.playSound("Red.wav");
+                } else if (sequence.getSequenceList().get(i).endsWith("3")) {
+                    Audio.playSound("Blue.wav");
+                } else if (sequence.getSequenceList().get(i).endsWith("4")) {
+                    Audio.playSound("Yellow.wav");
+                }
+                Thread.sleep(400);
+                System.out.print("\b");
+                Thread.sleep(400);
+            } catch (InterruptedException ex) {
+            }
+        }
         
     }
 
@@ -60,11 +85,13 @@ public class Print {
         System.out.println("Please enter the sequence you have just seen without spaces: ");
     }
 
-    public static void correctAnswer(Sequence sequence) {
-        System.out.println("Correct! The sequence was: " + sequence + ". Next round.");
+    public static void correctAnswer() {
+        System.out.println("Correct! Next round.");
+        //Olga: I cut this part, so the player doesn't cheat The sequence was: " + sequence + ".
+        //Parameters: SequenceGenerator sequence
     }
 
-    public static void incorrectAnswer(Sequence sequence) {
+    public static void incorrectAnswer(SequenceGenerator sequence) {
         System.out.println("Incorrect! The sequence was: " + sequence);
     }
 
@@ -72,10 +99,12 @@ public class Print {
         System.out.println("*************************************************************");
         System.out.println("*                      Game over!                           *");
         System.out.println("*************************************************************");
+        Audio.playSound("Game Over.wav");
     }
     
         public static void goodbye() {
         System.out.println("Goodbye!");
+        Audio.playSound("Goodbye.wav");
     }
     
     public static void congratulations() {
@@ -90,21 +119,10 @@ public class Print {
         System.out.println("*************************************************************");
         System.out.println("*                      High Scores:                         *");
         System.out.println("*************************************************************");
-        for (String s : Highscores.getHighScoreList())
-            System.out.println(s);
+        int i = 1;
+        for (String s : Highscores.getHighScoreList()) {
+            System.out.println(i + "." + s + "round(s)");
+            i++;
+        }
     }
-
-    /*
-    In order to try how it works copypaste the following calls to main method:
-        Print.welcomeMessage();
-        Print.image();
-        Print.gameOptions();
-        Print.instructions();
-        Print.round(1);
-        Print.userPrompt();
-        Print.correctAnswer(null);
-        Print.incorrectAnswer(null);
-        Print.gameOver();
-        Print.congratulations();
-    */
 }
