@@ -4,38 +4,42 @@ package simongame;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Sequence {
+/**
+ * @author Francisco Vilches 1115994 | Olga Yaroshenko 15870568
+ */
+public class SequenceGenerator {
     //FIELDS--------------------------------------------------------------------
-    private final Random random;
-    private final LinkedList<Color> colorSequence;
+    private final Random RANDOM;
+    private final LinkedList<Color> COLOR_SEQUENCE;
     
     //CONSTRUCTOR---------------------------------------------------------------
-    public Sequence() {
-        this.random = new Random();
-        this.colorSequence = new LinkedList<>();
+    /**
+     * Initializes a new random object and an empty List which is used to
+     * contain Color enums
+     */
+    public SequenceGenerator() {
+        this.RANDOM = new Random();
+        this.COLOR_SEQUENCE = new LinkedList<>();
     }
     
     //GETTERS-------------------------------------------------------------------
-    public LinkedList<Color> getColorSequence() {
-        return colorSequence;
+    public LinkedList<Color> getCOLOR_SEQUENCE() {
+        return COLOR_SEQUENCE;
     }
     
     //METHODS-------------------------------------------------------------------
+    /**
+     * Used to generate a sequence of Color enums. Every time this method
+     * is called a randomly generated color enum will be added to the end of
+     * the ColorSequence list field of this object
+     */
     public void generateSequence() {
-        int colorOrdinal = random.nextInt(4);
-        this.colorSequence.addLast(Color.values()[colorOrdinal]);
-    }
-    
-    public boolean isSequenceCorrect(LinkedList<Color> userSequence) {
-        for(int i = 0; i < userSequence.size(); i++) {
-            if(!(userSequence.get(i) == colorSequence.get(i)))
-                return false;
-        }       
-        return true;
+        int colorOrdinal = RANDOM.nextInt(4);
+        this.COLOR_SEQUENCE.addLast(Color.values()[colorOrdinal]);
     }
 
     @Override
     public String toString() {
-        return colorSequence.toString();
+        return COLOR_SEQUENCE.toString();
     }
 }

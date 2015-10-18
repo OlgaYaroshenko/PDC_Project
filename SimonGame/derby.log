@@ -1,10 +1,14 @@
+Sun Oct 18 19:43:40 NZDT 2015 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Tue Oct 13 13:10:15 NZDT 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0150-5e88-7f32-00000712bf20 
-on database directory /Users/olga/Workspace/PDC_Project/SimonGame/SimonGameDB  with class loader sun.misc.Launcher$AppClassLoader@55f96302 
-Loaded from file:/Users/olga/AUT/2sem/PDC/derby.jar
+Sun Oct 18 19:43:40 NZDT 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0150-79b0-7a1a-000005d8e3d8 
+on database directory C:\Users\Francisco\Documents\GitHub\PDC_Project\SimonGame\SimonGameDB with class loader sun.misc.Launcher$AppClassLoader@6e0be858 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_51/db/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_31-b13
-user.dir=/Users/olga/Workspace/PDC_Project/SimonGame
+java.runtime.version=1.8.0_51-b16
+user.dir=C:\Users\Francisco\Documents\GitHub\PDC_Project\SimonGame
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
