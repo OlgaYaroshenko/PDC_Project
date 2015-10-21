@@ -57,6 +57,6 @@ public class Player implements Comparable<Player> {
 
     @Override
     public String toString() {
-        return NAME + "\n" + SCORE;
+        return NAME + "-" + SCORE;
     }
 }
